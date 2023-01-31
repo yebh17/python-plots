@@ -66,7 +66,7 @@ def wireguard():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     color='blue', marker='.', linewidth=10000)
+                     marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
         
@@ -138,7 +138,7 @@ def openvpn():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     color='blue', marker='.', linewidth=10000)
+                     marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
         
@@ -210,7 +210,7 @@ def softether():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     color='blue', marker='.', linewidth=10000)
+                     marker='.', linewidth=10000)
         
         plt.xlim(0, 9.8)
         
@@ -282,7 +282,7 @@ def tinc():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     color='blue', marker='.', linewidth=10000)
+                     marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
         
@@ -353,7 +353,7 @@ def zerotier():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     color='blue', marker='.', linewidth=10000)
+                     marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
         
