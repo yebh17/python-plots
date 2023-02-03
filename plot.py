@@ -66,9 +66,10 @@ def wireguard():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', linewidth=10000)
+                     marker='.', linewidth=12000)
         
         plt.xlim(0, 9.33)
+        plt.ylim(0, 0.35)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -141,6 +142,7 @@ def openvpn():
                      marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
+        plt.ylim(0, 0.35)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -213,6 +215,7 @@ def softether():
                      marker='.', linewidth=10000)
         
         plt.xlim(0, 9.8)
+        plt.ylim(0, 0.35)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -285,6 +288,7 @@ def tinc():
                      marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
+        plt.ylim(0, 0.35)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -356,6 +360,7 @@ def zerotier():
                      marker='.', linewidth=10000)
         
         plt.xlim(0, 9.33)
+        plt.ylim(0, 0.35)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
