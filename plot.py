@@ -42,15 +42,11 @@ def wireguard():
         plt.savefig("graphs/wireguard/wireguard_raw.jpg")
 
     def histogram_graph():
-        # Create a figure and axis for the histogram
-        fig, ax1 = plt.subplots(figsize=(10, 5))
-        sns.histplot(df["Time"], ax=ax1, bins=30)
+        # Plot histogram
+        plt.figure(figsize=(9,4))
         
-        # Create a second axis for the KDE
-        ax2 = ax1.twinx()
-        sns.kdeplot(df["Time"], ax=ax2, color='red', bw=0.11)
-        plt.xlim(-10, 650)
-
+        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
+        
         # Add labels
         plt.xlabel('Response times(ms)')
         plt.ylabel('Requests count')
@@ -66,7 +62,7 @@ def wireguard():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', linewidth=12000)
+                     marker='.', s=220, linewidth=10000)
         
         plt.xlim(0, 9.33)
         plt.ylim(0, 0.35)
@@ -114,16 +110,11 @@ def openvpn():
         plt.savefig("graphs/ovpn/openvpn_raw.jpg")
 
     def histogram_graph():
-        # Create a figure and axis for the histogram
-        fig, ax1 = plt.subplots(figsize=(10, 5))
-        sns.histplot(df["Time"], ax=ax1, bins=30)
+        # Plot histogram
+        plt.figure(figsize=(9,4))
         
-        # Create a second axis for the KDE
-        ax2 = ax1.twinx()
-        sns.kdeplot(df["Time"], ax=ax2, color='red', bw=0.11)
+        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
         
-        plt.xlim(-10, 630)
-
         # Add labels
         plt.xlabel('Response times(ms)')
         plt.ylabel('Requests count')
@@ -139,7 +130,7 @@ def openvpn():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', linewidth=10000)
+                     marker='.', s=220, linewidth=10000)
         
         plt.xlim(0, 9.33)
         plt.ylim(0, 0.35)
@@ -187,16 +178,11 @@ def softether():
         plt.savefig("graphs/softether/softether_raw.jpg")
 
     def histogram_graph():
-        # Create a figure and axis for the histogram
-        fig, ax1 = plt.subplots(figsize=(10, 5))
-        sns.histplot(df["Time"], ax=ax1, bins=30)
+        # Plot histogram
+        plt.figure(figsize=(9,4))
         
-        # Create a second axis for the KDE
-        ax2 = ax1.twinx()
-        sns.kdeplot(df["Time"], ax=ax2, color='red', bw=0.11)
+        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
         
-        plt.xlim(-10, 630)
-
         # Add labels
         plt.xlabel('Response times(ms)')
         plt.ylabel('Requests count')
@@ -212,7 +198,7 @@ def softether():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', linewidth=10000)
+                     marker='.', s=220, linewidth=10000)
         
         plt.xlim(0, 9.8)
         plt.ylim(0, 0.35)
@@ -260,16 +246,11 @@ def tinc():
         plt.savefig("graphs/tinc/tinc_raw.jpg")
 
     def histogram_graph():
-        # Create a figure and axis for the histogram
-        fig, ax1 = plt.subplots(figsize=(10, 5))
-        sns.histplot(df["Time"], ax=ax1, bins=30)
+        # Plot histogram
+        plt.figure(figsize=(9,4))
         
-        # Create a second axis for the KDE
-        ax2 = ax1.twinx()
-        sns.kdeplot(df["Time"], ax=ax2, color='red', bw=0.11)
+        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
         
-        plt.xlim(-50, 1460)
-
         # Add labels
         plt.xlabel('Response times(ms)')
         plt.ylabel('Requests count')
@@ -285,7 +266,7 @@ def tinc():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', linewidth=10000)
+                     marker='.', s=220, linewidth=10000)
         
         plt.xlim(0, 9.33)
         plt.ylim(0, 0.35)
@@ -333,16 +314,11 @@ def zerotier():
         plt.savefig("graphs/zerotier/zerotier_raw.jpg")
 
     def histogram_graph():
-        # Create a figure and axis for the histogram
-        fig, ax1 = plt.subplots(figsize=(10, 5))
-        sns.histplot(df["Time"], ax=ax1, bins=35)
+        # Plot histogram
+        plt.figure(figsize=(9,4))
         
-        # Create a second axis for the KDE
-        ax2 = ax1.twinx()
-        sns.kdeplot(df["Time"], ax=ax2, color='red', bw=0.11)
+        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
         
-        plt.xlim(-10, 630)
-
         # Add labels
         plt.xlabel('Response times(ms)')
         plt.ylabel('Requests count')
@@ -357,7 +333,7 @@ def zerotier():
         plt.figure(figsize=(9,4))
         sns.scatterplot(data=df.sort_values(by='Time'), 
                      x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', linewidth=10000)
+                     marker='.', s=220, linewidth=10000)
         
         plt.xlim(0, 9.33)
         plt.ylim(0, 0.35)
