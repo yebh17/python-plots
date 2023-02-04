@@ -7,6 +7,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+from array import array
 
 def wireguard():
     # Create a directory to store all the graphs
@@ -23,12 +24,12 @@ def wireguard():
     # Convert the values to float
     decimal_values = [float(x) for x in decimal_values]
 
-    resp_times = [num * 1000 for num in decimal_values]
+    resp_times_wg = [num * 1000 for num in decimal_values]
 
-    resp_times = [round(num, 3) for num in resp_times]
+    resp_times_wg = [round(num, 3) for num in resp_times_wg]
     
     # Convert the lists into DataFrames
-    df = pd.DataFrame({"Time": resp_times})
+    df = pd.DataFrame({"Time": resp_times_wg})
 
     def raw_graph():
         # Generate a Seaborn line plot
@@ -42,30 +43,27 @@ def wireguard():
         plt.savefig("graphs/wireguard/wireguard_raw.jpg")
 
     def histogram_graph():
-        # Plot histogram
         plt.figure(figsize=(9,4))
+
+        # convert data to logarithmic values
+        log_data = np.log(resp_times_wg)
         
-        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
+        # plot the logarithmic values using a distplot
+        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
         
         # Add labels
-        plt.xlabel('Response times(ms)')
-        plt.ylabel('Requests count')
+        plt.xlabel('Log(response times(ms))')
+        plt.ylabel('F(X)')
         
         # Save the plot to a file
         plt.savefig("graphs/wireguard/wireguard_histogram.jpg")
         
     def ecdf_graph():
         # Plot the ECDF
-        # sns.lineplot(data=df.sort_values(by='Time'), 
-        #              x='Time', y=np.arange(1, len(df)+1)/len(df),
-        #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
-        sns.scatterplot(data=df.sort_values(by='Time'), 
-                     x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', s=220, linewidth=10000)
-        
-        plt.xlim(0, 9.33)
-        plt.ylim(0, 0.35)
+        sns.lineplot(data=df.sort_values(by='Time'), 
+                     x=np.arange(1, len(df)+1)/len(df), y='Time',
+                     drawstyle='steps-post', color='blue')
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -91,12 +89,12 @@ def openvpn():
     # Convert the values to float
     decimal_values = [float(x) for x in decimal_values]
 
-    resp_times = [num * 1000 for num in decimal_values]
+    resp_times_ovpn = [num * 1000 for num in decimal_values]
 
-    resp_times = [round(num, 3) for num in resp_times]
+    resp_times_ovpn = [round(num, 3) for num in resp_times_ovpn]
     
     # Convert the lists into DataFrames
-    df = pd.DataFrame({"Time": resp_times})
+    df = pd.DataFrame({"Time": resp_times_ovpn})
     
     def raw_graph():
         # Generate a Seaborn line plot
@@ -113,11 +111,15 @@ def openvpn():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
+        # convert data to logarithmic values
+        log_data = np.log(resp_times_ovpn)
+        
+        # plot the logarithmic values using a distplot
+        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
         
         # Add labels
-        plt.xlabel('Response times(ms)')
-        plt.ylabel('Requests count')
+        plt.xlabel('Log(response times(ms))')
+        plt.ylabel('F(X)')
 
         # Save the plot to a file
         plt.savefig("graphs/ovpn/openvpn_histogram.jpg")
@@ -159,12 +161,12 @@ def softether():
     # Convert the values to float
     decimal_values = [float(x) for x in decimal_values]
 
-    resp_times = [num * 1000 for num in decimal_values]
+    resp_times_se = [num * 1000 for num in decimal_values]
 
-    resp_times = [round(num, 3) for num in resp_times]
+    resp_times_se = [round(num, 3) for num in resp_times_se]
 
     # Convert the lists into DataFrames
-    df = pd.DataFrame({"Time": resp_times})
+    df = pd.DataFrame({"Time": resp_times_se})
 
     def raw_graph():
         # Generate a Seaborn line plot
@@ -181,11 +183,15 @@ def softether():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
+        # convert data to logarithmic values
+        log_data = np.log(resp_times_se)
+        
+        # plot the logarithmic values using a distplot
+        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
         
         # Add labels
-        plt.xlabel('Response times(ms)')
-        plt.ylabel('Requests count')
+        plt.xlabel('Log(response times(ms))')
+        plt.ylabel('F(X)')
 
         # Save the plot to a file
         plt.savefig("graphs/softether/softether_histogram.jpg")
@@ -227,12 +233,12 @@ def tinc():
     # Convert the values to float
     decimal_values = [float(x) for x in decimal_values]
 
-    resp_times = [num * 1000 for num in decimal_values]
+    resp_times_tinc = [num * 1000 for num in decimal_values]
 
-    resp_times = [round(num, 3) for num in resp_times]
+    resp_times_tinc = [round(num, 3) for num in resp_times_tinc]
 
     # Convert the lists into DataFrames
-    df = pd.DataFrame({"Time": resp_times})
+    df = pd.DataFrame({"Time": resp_times_tinc})
 
     def raw_graph():
         # Generate a Seaborn line plot
@@ -249,11 +255,15 @@ def tinc():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
+        # convert data to logarithmic values
+        log_data = np.log(resp_times_tinc)
+        
+        # plot the logarithmic values using a distplot
+        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
         
         # Add labels
-        plt.xlabel('Response times(ms)')
-        plt.ylabel('Requests count')
+        plt.xlabel('Log(response times(ms))')
+        plt.ylabel('F(X)')
 
         # Save the plot to a file
         plt.savefig("graphs/tinc/tinc_histogram.jpg")
@@ -295,12 +305,12 @@ def zerotier():
     # Convert the values to float
     decimal_values = [float(x) for x in decimal_values]
 
-    resp_times = [num * 1000 for num in decimal_values]
+    resp_times_zt = [num * 1000 for num in decimal_values]
 
-    resp_times = [round(num, 3) for num in resp_times]
+    resp_times_zt = [round(num, 3) for num in resp_times_zt]
 
     # Convert the lists into DataFrames
-    df = pd.DataFrame({"Time": resp_times})
+    df = pd.DataFrame({"Time": resp_times_zt})
 
     def raw_graph():
         # Generate a Seaborn line plot
@@ -317,11 +327,15 @@ def zerotier():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        sns.histplot(data=df, x="Time", kde=True, color="blue", edgecolor="black", alpha=0.5, bins=30)
+        # convert data to logarithmic values
+        log_data = np.log(resp_times_zt)
+        
+        # plot the logarithmic values using a distplot
+        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
         
         # Add labels
-        plt.xlabel('Response times(ms)')
-        plt.ylabel('Requests count')
+        plt.xlabel('Log(response times(ms))')
+        plt.ylabel('F(X)')
 
         # Save the plot to a file
         plt.savefig("graphs/zerotier/zerotier_histogram.jpg")
