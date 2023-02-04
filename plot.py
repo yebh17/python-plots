@@ -34,6 +34,8 @@ def wireguard():
     def raw_graph():
         # Generate a Seaborn line plot
         plt.figure(figsize=(14,4))
+        # divide each value with 10000
+        # df["Time"] = df['Time']/10000
         ax = sns.lineplot(data=df, linewidth = 0.90)
         
         # Set labels for x and y axis
@@ -61,12 +63,20 @@ def wireguard():
     def ecdf_graph():
         # Plot the ECDF
         plt.figure(figsize=(9,4))
-        sns.lineplot(data=df.sort_values(by='Time'), 
-                     x=np.arange(1, len(df)+1)/len(df), y='Time',
-                     drawstyle='steps-post', color='blue')
+        # sns.lineplot(data=df.sort_values(by='Time'), 
+        #              x=np.arange(1, len(df)+1)/len(df), y='Time',
+        #              drawstyle='steps-post', color='blue')
+
+        n = len(resp_times_wg)
+        x = np.sort(resp_times_wg)
+        y = np.arange(1, n+1) / n
+        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
+        
+        plt.xlim(0, 30)
+        plt.ylim(0, 0.4)
         
         # Add labels
-        plt.xlabel('Log(response times(ms))')
+        plt.xlabel('Response times(ms)')
         plt.ylabel('F(X)')
 
         # Save the plot to a file
@@ -130,15 +140,16 @@ def openvpn():
         #              x='Time', y=np.arange(1, len(df)+1)/len(df),
         #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
-        sns.scatterplot(data=df.sort_values(by='Time'), 
-                     x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', s=220, linewidth=10000)
+        n = len(resp_times_ovpn)
+        x = np.sort(resp_times_ovpn)
+        y = np.arange(1, n+1) / n
+        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
         
-        plt.xlim(0, 9.33)
-        plt.ylim(0, 0.35)
+        plt.xlim(0, 30)
+        plt.ylim(0, 0.4)
         
         # Add labels
-        plt.xlabel('Log(response times(ms))')
+        plt.xlabel('Response times(ms)')
         plt.ylabel('F(X)')
 
         # Save the plot to a file
@@ -202,15 +213,16 @@ def softether():
         #              x='Time', y=np.arange(1, len(df)+1)/len(df),
         #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
-        sns.scatterplot(data=df.sort_values(by='Time'), 
-                     x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', s=220, linewidth=10000)
+        n = len(resp_times_se)
+        x = np.sort(resp_times_se)
+        y = np.arange(1, n+1) / n
+        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
         
-        plt.xlim(0, 9.8)
-        plt.ylim(0, 0.35)
+        plt.xlim(0, 30)
+        plt.ylim(0, 0.4)
         
         # Add labels
-        plt.xlabel('Log(response times(ms))')
+        plt.xlabel('Response times(ms)')
         plt.ylabel('F(X)')
 
         # Save the plot to a file
@@ -274,15 +286,16 @@ def tinc():
         #              x='Time', y=np.arange(1, len(df)+1)/len(df),
         #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
-        sns.scatterplot(data=df.sort_values(by='Time'), 
-                     x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', s=220, linewidth=10000)
+        n = len(resp_times_tinc)
+        x = np.sort(resp_times_tinc)
+        y = np.arange(1, n+1) / n
+        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
         
-        plt.xlim(0, 9.33)
-        plt.ylim(0, 0.35)
+        plt.xlim(0, 30)
+        plt.ylim(0, 0.4)
         
         # Add labels
-        plt.xlabel('Log(response times(ms))')
+        plt.xlabel('Response times(ms)')
         plt.ylabel('F(X)')
 
         # Save the plot to a file
@@ -345,15 +358,16 @@ def zerotier():
         #              x='Time', y=np.arange(1, len(df)+1)/len(df),
         #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
-        sns.scatterplot(data=df.sort_values(by='Time'), 
-                     x='Time', y=np.arange(1, len(df)+1)/len(df),
-                     marker='.', s=220, linewidth=10000)
+        n = len(resp_times_zt)
+        x = np.sort(resp_times_zt)
+        y = np.arange(1, n+1) / n
+        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
         
-        plt.xlim(0, 9.33)
-        plt.ylim(0, 0.35)
+        plt.xlim(0, 30)
+        plt.ylim(0, 0.4)
         
         # Add labels
-        plt.xlabel('Log(response times(ms))')
+        plt.xlabel('Response times(ms)')
         plt.ylabel('F(X)')
 
         # Save the plot to a file
