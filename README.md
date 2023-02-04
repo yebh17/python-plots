@@ -10,3 +10,4 @@ Options:
 -    s/softether - Softether plots
 -    t/tinc - Tinc plots
 -    z/zerotier - Zerotier plots
+-    e/ecdf - Combined ecdf plots
