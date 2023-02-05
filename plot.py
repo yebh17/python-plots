@@ -7,7 +7,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-from array import array
 
 def wireguard():
     # Create a directory to store all the graphs
@@ -468,11 +467,60 @@ def ecdfs_comparision_graph():
     
     # Save the plot to a file
     plt.savefig("graphs/combined_ecdf.jpg")
+    
+def box_plot():
+    fig, ax = plt.subplots()
+
+    file_names = ["wireguard_results/metrics_data.log", "ovpn_results/metrics_data.log", 
+                  "softether_results/metrics_data.log", "tinc_results/metrics_data.log",
+                  "zerotier_results/metrics_data.log"]
+    
+    colors = ['yellow', 'green', 'red', 'blue', 'orange']
+    
+    for i in range(len(file_names)):
+        # Open the file
+        with open(file_names[i], "r") as f:
+            content = f.read()
+
+        # Find all decimal values using regular expression
+        decimal_values = re.findall(r"-?\d+\.\d+", content)
+
+        # Convert the values to float
+        decimal_values = [float(x) for x in decimal_values]
+
+        resp_times = [num * 1000 for num in decimal_values]
+        resp_times = [round(num, 3) for num in resp_times]
+    
+        bp = ax.boxplot(resp_times, vert=False, showfliers=True)
+
+        for element in ['boxes', 'whiskers', 'caps']:
+            plt.setp(bp[element], color=colors[i])
+
+        median = bp['medians'][0].get_ydata()[0]
+
+        ax.annotate(f"Median: {median:.2f}", xy=(1, median), xycoords='data',
+                    xytext=(60, 0), textcoords='offset points',
+                    arrowprops=dict(arrowstyle="->",
+                                    connectionstyle="arc3,rad=.2"))
+
+        first_quartile = bp['caps'][0].get_ydata()[0]
+        third_quartile = bp['caps'][1].get_ydata()[0]
+
+        ax.annotate(f"1st Quartile: {first_quartile:.2f}", xy=(1, first_quartile), xycoords='data',
+                    xytext=(60, 20), textcoords='offset points',
+                    arrowprops=dict(arrowstyle="->",
+                                    connectionstyle="arc3,rad=.2"))
+
+        ax.annotate(f"3rd Quartile: {third_quartile:.2f}", xy=(1, third_quartile), xycoords='data',
+                    xytext=(60, -20), textcoords='offset points',
+                    arrowprops=dict(arrowstyle="->",
+                                    connectionstyle="arc3,rad=.2"))
+    plt.show()
 
 def main():
     argumentList = sys.argv[1:]
-    options = "wostze"
-    long_options = ["wireguard", "openvpn", "softether", "tinc", "zerotier", "ecdf"] 
+    options = "wostzeb"
+    long_options = ["wireguard", "openvpn", "softether", "tinc", "zerotier", "ecdf", "box"] 
     try:
         arguments, values = getopt.getopt(argumentList, options, long_options)
 
@@ -500,6 +548,9 @@ def main():
             elif currentArgument in ("-e", "--ecdf"):
                 print ("Loading combined ecdf's Graph")
                 ecdfs_comparision_graph()
+            elif currentArgument in ("-b", "--box"):
+                print ("Loading box plots Graph")
+                box_plot()
          
     except getopt.error as err:
         print (str(err))
