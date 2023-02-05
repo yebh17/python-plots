@@ -15,7 +15,7 @@ def wireguard():
     os.makedirs(wg_dir, exist_ok=True)
     
     # Open the log file
-    with open("wireguard_results/metrics.log", "r") as f:
+    with open("wireguard_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -34,8 +34,7 @@ def wireguard():
     def raw_graph():
         # Generate a Seaborn line plot
         plt.figure(figsize=(14,4))
-        # divide each value with 10000
-        # df["Time"] = df['Time']/10000
+        
         ax = sns.lineplot(data=df, linewidth = 0.90)
         
         # Set labels for x and y axis
@@ -63,10 +62,7 @@ def wireguard():
     def ecdf_graph():
         # Plot the ECDF
         plt.figure(figsize=(9,4))
-        # sns.lineplot(data=df.sort_values(by='Time'), 
-        #              x=np.arange(1, len(df)+1)/len(df), y='Time',
-        #              drawstyle='steps-post', color='blue')
-
+        
         n = len(resp_times_wg)
         x = np.sort(resp_times_wg)
         y = np.arange(1, n+1) / n
@@ -90,7 +86,7 @@ def openvpn():
     os.makedirs(ovpn_dir, exist_ok=True)
     
     # Open the log file
-    with open("ovpn_results/metrics.log", "r") as f:
+    with open("ovpn_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -136,10 +132,8 @@ def openvpn():
 
     def ecdf_graph():
         # Plot the ECDF
-        # sns.lineplot(data=df.sort_values(by='Time'), 
-        #              x='Time', y=np.arange(1, len(df)+1)/len(df),
-        #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
+        
         n = len(resp_times_ovpn)
         x = np.sort(resp_times_ovpn)
         y = np.arange(1, n+1) / n
@@ -163,7 +157,7 @@ def softether():
     os.makedirs(softether_dir, exist_ok=True)
     
     # Open the log file
-    with open("softether_results/metrics.log", "r") as f:
+    with open("softether_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -209,10 +203,8 @@ def softether():
 
     def ecdf_graph():
         # Plot the ECDF
-        # sns.lineplot(data=df.sort_values(by='Time'), 
-        #              x='Time', y=np.arange(1, len(df)+1)/len(df),
-        #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
+        
         n = len(resp_times_se)
         x = np.sort(resp_times_se)
         y = np.arange(1, n+1) / n
@@ -236,7 +228,7 @@ def tinc():
     os.makedirs(tinc_dir, exist_ok=True)
     
     # Open the log file
-    with open("tinc_results/metrics.log", "r") as f:
+    with open("tinc_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -282,10 +274,8 @@ def tinc():
 
     def ecdf_graph():
         # Plot the ECDF
-        # sns.lineplot(data=df.sort_values(by='Time'), 
-        #              x='Time', y=np.arange(1, len(df)+1)/len(df),
-        #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
+        
         n = len(resp_times_tinc)
         x = np.sort(resp_times_tinc)
         y = np.arange(1, n+1) / n
@@ -309,7 +299,7 @@ def zerotier():
     os.makedirs(zerotier_dir, exist_ok=True)
     
     # Open the log file
-    with open("zerotier_results/metrics.log", "r") as f:
+    with open("zerotier_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -354,10 +344,8 @@ def zerotier():
         plt.savefig("graphs/zerotier/zerotier_histogram.jpg")
     def ecdf_graph():
         # Plot the ECDF
-        # sns.lineplot(data=df.sort_values(by='Time'), 
-        #              x='Time', y=np.arange(1, len(df)+1)/len(df),
-        #              drawstyle='steps-post', color='blue')
         plt.figure(figsize=(9,4))
+        
         n = len(resp_times_zt)
         x = np.sort(resp_times_zt)
         y = np.arange(1, n+1) / n
@@ -379,12 +367,8 @@ def ecdfs_comparision_graph():
     # Create figure and axis objects
     fig, ax = plt.subplots()
 
-    # Create a directory to store all the graphs
-    wg_dir = "graphs/wireguard"
-    os.makedirs(wg_dir, exist_ok=True)
-
     # Open the wireguard log file
-    with open("wireguard_results/metrics.log", "r") as f:
+    with open("wireguard_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -403,7 +387,7 @@ def ecdfs_comparision_graph():
     ax.plot(x1, y1, color="green", marker='.', linestyle='none', markersize=5, label='WireGuard')
     
     # Open the ovpn log file
-    with open("ovpn_results/metrics.log", "r") as f:
+    with open("ovpn_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -422,7 +406,7 @@ def ecdfs_comparision_graph():
     ax.plot(x2, y2, marker='.', linestyle='none', markersize=5, color="red", label='OpenVPN')
 
     # Open the softether log file
-    with open("softether_results/metrics.log", "r") as f:
+    with open("softether_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -438,10 +422,10 @@ def ecdfs_comparision_graph():
     n3 = len(resp_times_se)
     x3 = np.sort(resp_times_se)
     y3 = np.arange(1, n3 + 1) / n3
-    ax.plot(x3, y3, marker='.', linestyle='none', markersize=5, color="blue", label='Softether')
+    ax.plot(x3, y3, marker='.', linestyle='none', markersize=5, color="black", label='Softether')
     
     # Open the tinc log file
-    with open("tinc_results/metrics.log", "r") as f:
+    with open("tinc_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -460,7 +444,7 @@ def ecdfs_comparision_graph():
     ax.plot(x4, y4, marker='.', linestyle='none', markersize=5, color="purple", label='Tinc')
     
     # Open the zerotier log file
-    with open("softether_results/metrics.log", "r") as f:
+    with open("zerotier_results/metrics_data.log", "r") as f:
         content = f.read()
 
     # Find all decimal values using regular expression
@@ -476,10 +460,10 @@ def ecdfs_comparision_graph():
     n5 = len(resp_times_zt)
     x5 = np.sort(resp_times_zt)
     y5 = np.arange(1, n5 + 1) / n5
-    ax.plot(x5, y5, marker='.', linestyle='none', markersize=5, color="black", label='Zerotier')
+    ax.plot(x5, y5, marker='.', linestyle='none', markersize=5, color="orange", label='Zerotier')
 
     plt.xlim(0, 30)
-    plt.ylim(0, 0.4)
+    plt.ylim(-0.05, 0.4)
     ax.legend()
     
     # Save the plot to a file
