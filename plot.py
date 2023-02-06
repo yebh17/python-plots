@@ -65,10 +65,13 @@ def wireguard():
         n = len(resp_times_wg)
         x = np.sort(resp_times_wg)
         y = np.arange(1, n+1) / n
-        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
+        
+        sns.scatterplot(x=x, y=y, s=25, linewidth = 0.08)
         
         plt.xlim(0, 30)
-        plt.ylim(0, 0.4)
+        plt.ylim(0.00, 0.4)
+        
+        plt.ylim(bottom=-0.01)
         
         # Add labels
         plt.xlabel('Response times(ms)')
@@ -109,6 +112,8 @@ def openvpn():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(bottom=0)
+        
         # Save the plot to a file
         plt.savefig("graphs/ovpn/openvpn_raw.jpg")
 
@@ -136,10 +141,13 @@ def openvpn():
         n = len(resp_times_ovpn)
         x = np.sort(resp_times_ovpn)
         y = np.arange(1, n+1) / n
-        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
+        
+        sns.scatterplot(x=x, y=y, s=25, linewidth = 0.08)
         
         plt.xlim(0, 30)
-        plt.ylim(0, 0.4)
+        plt.ylim(0.00, 0.4)
+        
+        plt.ylim(bottom=-0.01)
         
         # Add labels
         plt.xlabel('Response times(ms)')
@@ -180,6 +188,8 @@ def softether():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(bottom=0)
+        
         # Save the plot to a file
         plt.savefig("graphs/softether/softether_raw.jpg")
 
@@ -207,10 +217,13 @@ def softether():
         n = len(resp_times_se)
         x = np.sort(resp_times_se)
         y = np.arange(1, n+1) / n
-        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
+        
+        sns.scatterplot(x=x, y=y, s=25, linewidth = 0.08)
         
         plt.xlim(0, 30)
-        plt.ylim(0, 0.4)
+        plt.ylim(0.00, 0.4)
+        
+        plt.ylim(bottom=-0.01)
         
         # Add labels
         plt.xlabel('Response times(ms)')
@@ -251,6 +264,8 @@ def tinc():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(bottom=0)
+        
         # Save the plot to a file
         plt.savefig("graphs/tinc/tinc_raw.jpg")
 
@@ -278,10 +293,13 @@ def tinc():
         n = len(resp_times_tinc)
         x = np.sort(resp_times_tinc)
         y = np.arange(1, n+1) / n
-        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
+        
+        sns.scatterplot(x=x, y=y, s=25, linewidth = 0.08)
         
         plt.xlim(0, 30)
-        plt.ylim(0, 0.4)
+        plt.ylim(0.00, 0.4)
+        
+        plt.ylim(bottom=-0.01)
         
         # Add labels
         plt.xlabel('Response times(ms)')
@@ -322,6 +340,8 @@ def zerotier():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(bottom=0)
+        
         # Save the plot to a file
         plt.savefig("graphs/zerotier/zerotier_raw.jpg")
 
@@ -348,10 +368,13 @@ def zerotier():
         n = len(resp_times_zt)
         x = np.sort(resp_times_zt)
         y = np.arange(1, n+1) / n
-        plt.plot(x, y, marker='.', linestyle='none', markersize=13)
+        
+        sns.scatterplot(x=x, y=y, s=25, linewidth = 0.08)
         
         plt.xlim(0, 30)
-        plt.ylim(0, 0.4)
+        plt.ylim(0.00, 0.4)
+        
+        plt.ylim(bottom=-0.01)
         
         # Add labels
         plt.xlabel('Response times(ms)')
@@ -363,103 +386,24 @@ def zerotier():
     return raw_graph(), histogram_graph(), ecdf_graph()
 
 def ecdfs_comparision_graph():
-    # Create figure and axis objects
     fig, ax = plt.subplots()
-
-    # Open the wireguard log file
-    with open("wireguard_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
-
-    resp_times_wg = [num * 1000 for num in decimal_values]
-
-    resp_times_wg = [round(num, 3) for num in resp_times_wg]
-
-    n1 = len(resp_times_wg)
-    x1 = np.sort(resp_times_wg)
-    y1 = np.arange(1, n1 + 1) / n1
-    ax.plot(x1, y1, color="green", marker='.', linestyle='none', markersize=5, label='WireGuard')
     
-    # Open the ovpn log file
-    with open("ovpn_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
-
-    resp_times_ovpn = [num * 1000 for num in decimal_values]
-
-    resp_times_ovpn = [round(num, 3) for num in resp_times_ovpn]
-
-    n2 = len(resp_times_ovpn)
-    x2 = np.sort(resp_times_ovpn)
-    y2 = np.arange(1, n2 + 1) / n2
-    ax.plot(x2, y2, marker='.', linestyle='none', markersize=5, color="red", label='OpenVPN')
-
-    # Open the softether log file
-    with open("softether_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
-
-    resp_times_se = [num * 1000 for num in decimal_values]
-
-    resp_times_se = [round(num, 3) for num in resp_times_se]
-
-    n3 = len(resp_times_se)
-    x3 = np.sort(resp_times_se)
-    y3 = np.arange(1, n3 + 1) / n3
-    ax.plot(x3, y3, marker='.', linestyle='none', markersize=5, color="black", label='Softether')
+    labels = ['Wireguard', 'OpenVPN', 'ZeroTier', 'Tinc', 'SoftEther']
+    colors = ['green', 'red', 'black', 'purple', 'orange']
+    file_paths = ["wireguard_results/metrics_data.log", "ovpn_results/metrics_data.log",
+                  "zerotier_results/metrics_data.log", "tinc_results/metrics_data.log", 
+                  "softether_results/metrics_data.log"]
     
-    # Open the tinc log file
-    with open("tinc_results/metrics_data.log", "r") as f:
-        content = f.read()
+    for i, file_path in enumerate(file_paths):
+        with open(file_path, "r") as f:
+            content = f.read()
 
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
-
-    resp_times_tinc = [num * 1000 for num in decimal_values]
-
-    resp_times_tinc = [round(num, 3) for num in resp_times_tinc]
-
-    n4 = len(resp_times_tinc)
-    x4 = np.sort(resp_times_tinc)
-    y4 = np.arange(1, n4 + 1) / n4
-    ax.plot(x4, y4, marker='.', linestyle='none', markersize=5, color="purple", label='Tinc')
-    
-    # Open the zerotier log file
-    with open("zerotier_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
-
-    resp_times_zt = [num * 1000 for num in decimal_values]
-
-    resp_times_zt = [round(num, 3) for num in resp_times_zt]
-
-    n5 = len(resp_times_zt)
-    x5 = np.sort(resp_times_zt)
-    y5 = np.arange(1, n5 + 1) / n5
-    ax.plot(x5, y5, marker='.', linestyle='none', markersize=5, color="orange", label='Zerotier')
+        decimal_values = [float(x) for x in re.findall(r"-?\d+\.\d+", content)]
+        resp_times = [round(num * 1000, 3) for num in decimal_values]
+        n = len(resp_times)
+        x = np.sort(resp_times)
+        y = np.arange(1, n + 1) / n
+        ax.plot(x, y, marker='.', linestyle='none', markersize=5, color=colors[i], label=labels[i])
 
     plt.xlim(0, 30)
     plt.ylim(-0.05, 0.4)
@@ -469,14 +413,16 @@ def ecdfs_comparision_graph():
     plt.savefig("graphs/combined_ecdf.jpg")
     
 def box_plot():
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(1, 5, sharex=True, figsize=(15, 5))
 
-    file_names = ["wireguard_results/metrics_data.log", "ovpn_results/metrics_data.log", 
-                  "softether_results/metrics_data.log", "tinc_results/metrics_data.log",
-                  "zerotier_results/metrics_data.log"]
+    file_names = ["wireguard_results/metrics_data.log", "ovpn_results/metrics_data.log",
+                  "zerotier_results/metrics_data.log", "tinc_results/metrics_data.log",
+                  "softether_results/metrics_data.log"]
     
-    colors = ['yellow', 'green', 'red', 'blue', 'orange']
-    
+    labels = ['Wireguard', 'OpenVPN', 'ZeroTier', 'Tinc', 'Softether']
+
+    colors = ['green', 'orange', 'black', 'purple', 'red']
+
     for i in range(len(file_names)):
         # Open the file
         with open(file_names[i], "r") as f:
@@ -490,32 +436,30 @@ def box_plot():
 
         resp_times = [num * 1000 for num in decimal_values]
         resp_times = [round(num, 3) for num in resp_times]
-    
-        bp = ax.boxplot(resp_times, vert=False, showfliers=True)
+
+        bp = ax[i].boxplot(resp_times, vert=True, showfliers=True)
 
         for element in ['boxes', 'whiskers', 'caps']:
             plt.setp(bp[element], color=colors[i])
 
         median = bp['medians'][0].get_ydata()[0]
 
-        ax.annotate(f"Median: {median:.2f}", xy=(1, median), xycoords='data',
-                    xytext=(60, 0), textcoords='offset points',
-                    arrowprops=dict(arrowstyle="->",
-                                    connectionstyle="arc3,rad=.2"))
+        ax[i].annotate(f"Median: {median:.2f}", xy=(1, median), xycoords='data',
+                    xytext=(-10, 23), textcoords='offset points')
 
         first_quartile = bp['caps'][0].get_ydata()[0]
         third_quartile = bp['caps'][1].get_ydata()[0]
 
-        ax.annotate(f"1st Quartile: {first_quartile:.2f}", xy=(1, first_quartile), xycoords='data',
-                    xytext=(60, 20), textcoords='offset points',
-                    arrowprops=dict(arrowstyle="->",
-                                    connectionstyle="arc3,rad=.2"))
+        ax[i].annotate(f"1st Quartile: {first_quartile:.2f}", xy=(1, first_quartile), xycoords='data',
+                    xytext=(-25, 10), textcoords='offset points')
 
-        ax.annotate(f"3rd Quartile: {third_quartile:.2f}", xy=(1, third_quartile), xycoords='data',
-                    xytext=(60, -20), textcoords='offset points',
-                    arrowprops=dict(arrowstyle="->",
-                                    connectionstyle="arc3,rad=.2"))
-    plt.show()
+        ax[i].annotate(f"3rd Quartile: {third_quartile:.2f}", xy=(1, third_quartile), xycoords='data',
+                    xytext=(-10, -58), textcoords='offset points')
+
+        ax[i].set_title(labels[i], color=colors[i])
+
+    # Save the plot to a file
+    plt.savefig("graphs/boxplots.jpg")
 
 def main():
     argumentList = sys.argv[1:]
@@ -524,7 +468,7 @@ def main():
     try:
         arguments, values = getopt.getopt(argumentList, options, long_options)
 
-        for currentArgument, currentValue in arguments:
+        for currentArgument, cureentValue in arguments:
     
             if currentArgument in ("-w", "--wireguard"):
                 print ("Loading Wireguard Graph")
@@ -541,7 +485,6 @@ def main():
             elif currentArgument in ("-t", "--tinc"):
                 print ("Loading tinc graph")
                 tinc()
-
             elif currentArgument in ("-z", "--zerotier"):
                 print ("Loading zerotier Graph")
                 zerotier()
