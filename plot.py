@@ -445,16 +445,16 @@ def box_plot():
         median = bp['medians'][0].get_ydata()[0]
 
         ax[i].annotate(f"Median: {median:.2f}", xy=(1, median), xycoords='data',
-                    xytext=(-10, 23), textcoords='offset points')
+                    xytext=(-31, 5), textcoords='offset points')
 
         first_quartile = bp['caps'][0].get_ydata()[0]
         third_quartile = bp['caps'][1].get_ydata()[0]
 
         ax[i].annotate(f"1st Quartile: {first_quartile:.2f}", xy=(1, first_quartile), xycoords='data',
-                    xytext=(-25, 10), textcoords='offset points')
+                    xytext=(-35, 10), textcoords='offset points')
 
         ax[i].annotate(f"3rd Quartile: {third_quartile:.2f}", xy=(1, third_quartile), xycoords='data',
-                    xytext=(-10, -58), textcoords='offset points')
+                    xytext=(-35, -30), textcoords='offset points')
 
         ax[i].set_title(labels[i], color=colors[i])
 
