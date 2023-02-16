@@ -7,6 +7,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 def wireguard():
     # Create a directory to store all the graphs
@@ -26,7 +27,36 @@ def wireguard():
     resp_times_wg = [num * 1000 for num in decimal_values]
 
     resp_times_wg = [round(num, 3) for num in resp_times_wg]
+
+    #print total samples count
+    print("Total samples count: ", len(resp_times_wg))
     
+    # Calculate the average using the sum and len functions
+    average = sum(resp_times_wg) / len(resp_times_wg)
+    # Print the average value
+    print("Average: ", average)
+    
+    #Find the minimum value using the min() function
+    minimum = min(resp_times_wg)
+    # Print the minimum value
+    print("The minimum value is:", minimum)
+    
+    #Find the maximum value using the max() function
+    maximum = max(resp_times_wg)
+    # Print the minimum value
+    print("The maximum value is:", maximum)
+    
+    # Calculate the mean of the list
+    mean = sum(resp_times_wg) / len(resp_times_wg)
+    # Calculate the sum of the squared differences from the mean
+    squared_diff = sum((num - mean)**2 for num in resp_times_wg)
+    # Calculate the variance by dividing the sum of squared differences by the number of values
+    variance = squared_diff / len(resp_times_wg)
+    # Calculate the standard deviation by taking the square root of the variance
+    std_dev = math.sqrt(variance)
+    # Print the standard deviation
+    print("The standard deviation is:", std_dev)
+
     # Convert the lists into DataFrames
     df = pd.DataFrame({"Time": resp_times_wg})
 
@@ -100,6 +130,35 @@ def openvpn():
     resp_times_ovpn = [num * 1000 for num in decimal_values]
 
     resp_times_ovpn = [round(num, 3) for num in resp_times_ovpn]
+    
+    #print total samples count
+    print("Total samples count: ", len(resp_times_ovpn))
+    
+    # Calculate the average using the sum and len functions
+    average = sum(resp_times_ovpn) / len(resp_times_ovpn)
+    # Print the average value
+    print("Average: ", average)
+    
+    #Find the minimum value using the min() function
+    minimum = min(resp_times_ovpn)
+    # Print the minimum value
+    print("The minimum value is:", minimum)
+    
+    #Find the maximum value using the max() function
+    maximum = max(resp_times_ovpn)
+    # Print the minimum value
+    print("The maximum value is:", maximum)
+    
+    # Calculate the mean of the list
+    mean = sum(resp_times_ovpn) / len(resp_times_ovpn)
+    # Calculate the sum of the squared differences from the mean
+    squared_diff = sum((num - mean)**2 for num in resp_times_ovpn)
+    # Calculate the variance by dividing the sum of squared differences by the number of values
+    variance = squared_diff / len(resp_times_ovpn)
+    # Calculate the standard deviation by taking the square root of the variance
+    std_dev = math.sqrt(variance)
+    # Print the standard deviation
+    print("The standard deviation is:", std_dev)
     
     # Convert the lists into DataFrames
     df = pd.DataFrame({"Time": resp_times_ovpn})
@@ -175,6 +234,35 @@ def softether():
     resp_times_se = [num * 1000 for num in decimal_values]
 
     resp_times_se = [round(num, 3) for num in resp_times_se]
+    
+    #print total samples count
+    print("Total samples count: ", len(resp_times_se))
+    
+    # Calculate the average using the sum and len functions
+    average = sum(resp_times_se) / len(resp_times_se)
+    # Print the average value
+    print("Average: ", average)
+    
+    #Find the minimum value using the min() function
+    minimum = min(resp_times_se)
+    # Print the minimum value
+    print("The minimum value is:", minimum)
+    
+    #Find the maximum value using the max() function
+    maximum = max(resp_times_se)
+    # Print the minimum value
+    print("The maximum value is:", maximum)
+    
+    # Calculate the mean of the list
+    mean = sum(resp_times_se) / len(resp_times_se)
+    # Calculate the sum of the squared differences from the mean
+    squared_diff = sum((num - mean)**2 for num in resp_times_se)
+    # Calculate the variance by dividing the sum of squared differences by the number of values
+    variance = squared_diff / len(resp_times_se)
+    # Calculate the standard deviation by taking the square root of the variance
+    std_dev = math.sqrt(variance)
+    # Print the standard deviation
+    print("The standard deviation is:", std_dev)
 
     # Convert the lists into DataFrames
     df = pd.DataFrame({"Time": resp_times_se})
@@ -251,6 +339,35 @@ def tinc():
     resp_times_tinc = [num * 1000 for num in decimal_values]
 
     resp_times_tinc = [round(num, 3) for num in resp_times_tinc]
+    
+    #print total samples count
+    print("Total samples count: ", len(resp_times_tinc))
+    
+    # Calculate the average using the sum and len functions
+    average = sum(resp_times_tinc) / len(resp_times_tinc)
+    # Print the average value
+    print("Average: ", average)
+    
+    #Find the minimum value using the min() function
+    minimum = min(resp_times_tinc)
+    # Print the minimum value
+    print("The minimum value is:", minimum)
+    
+    #Find the maximum value using the max() function
+    maximum = max(resp_times_tinc)
+    # Print the minimum value
+    print("The maximum value is:", maximum)
+    
+    # Calculate the mean of the list
+    mean = sum(resp_times_tinc) / len(resp_times_tinc)
+    # Calculate the sum of the squared differences from the mean
+    squared_diff = sum((num - mean)**2 for num in resp_times_tinc)
+    # Calculate the variance by dividing the sum of squared differences by the number of values
+    variance = squared_diff / len(resp_times_tinc)
+    # Calculate the standard deviation by taking the square root of the variance
+    std_dev = math.sqrt(variance)
+    # Print the standard deviation
+    print("The standard deviation is:", std_dev)
 
     # Convert the lists into DataFrames
     df = pd.DataFrame({"Time": resp_times_tinc})
@@ -327,6 +444,35 @@ def zerotier():
     resp_times_zt = [num * 1000 for num in decimal_values]
 
     resp_times_zt = [round(num, 3) for num in resp_times_zt]
+    
+    #print total samples count
+    print("Total samples count: ", len(resp_times_zt))
+    
+    # Calculate the average using the sum and len functions
+    average = sum(resp_times_zt) / len(resp_times_zt)
+    # Print the average value
+    print("Average: ", average)
+    
+    #Find the minimum value using the min() function
+    minimum = min(resp_times_zt)
+    # Print the minimum value
+    print("The minimum value is:", minimum)
+    
+    #Find the maximum value using the max() function
+    maximum = max(resp_times_zt)
+    # Print the minimum value
+    print("The maximum value is:", maximum)
+    
+    # Calculate the mean of the list
+    mean = sum(resp_times_zt) / len(resp_times_zt)
+    # Calculate the sum of the squared differences from the mean
+    squared_diff = sum((num - mean)**2 for num in resp_times_zt)
+    # Calculate the variance by dividing the sum of squared differences by the number of values
+    variance = squared_diff / len(resp_times_zt)
+    # Calculate the standard deviation by taking the square root of the variance
+    std_dev = math.sqrt(variance)
+    # Print the standard deviation
+    print("The standard deviation is:", std_dev)
 
     # Convert the lists into DataFrames
     df = pd.DataFrame({"Time": resp_times_zt})
