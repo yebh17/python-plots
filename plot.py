@@ -44,12 +44,12 @@ def wireguard():
 
     def histogram_graph():
         plt.figure(figsize=(9,4))
-
-        # convert data to logarithmic values
-        log_data = np.log(resp_times_wg)
         
         # plot the logarithmic values using a distplot
-        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        ax = sns.distplot(x=np.log10(resp_times_wg), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+
+        plt.xlim(left=-0.1)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -118,14 +118,13 @@ def openvpn():
         plt.savefig("graphs/ovpn/openvpn_raw.jpg")
 
     def histogram_graph():
-        # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # convert data to logarithmic values
-        log_data = np.log(resp_times_ovpn)
-        
         # plot the logarithmic values using a distplot
-        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        ax = sns.distplot(x=np.log10(resp_times_ovpn), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+
+        plt.xlim(left=-0.1)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -197,12 +196,12 @@ def softether():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # convert data to logarithmic values
-        log_data = np.log(resp_times_se)
-        
         # plot the logarithmic values using a distplot
-        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
-        
+        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        ax = sns.distplot(x=np.log10(resp_times_se), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+
+        plt.xlim(left=-0.1)
+
         # Add labels
         plt.xlabel('Log(response times(ms))')
         plt.ylabel('F(X)')
@@ -273,11 +272,11 @@ def tinc():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # convert data to logarithmic values
-        log_data = np.log(resp_times_tinc)
-        
         # plot the logarithmic values using a distplot
-        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        ax = sns.distplot(x=np.log10(resp_times_tinc), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+
+        plt.xlim(left=-0.1)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -349,11 +348,11 @@ def zerotier():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # convert data to logarithmic values
-        log_data = np.log(resp_times_zt)
-        
         # plot the logarithmic values using a distplot
-        sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        ax = sns.distplot(x=np.log10(resp_times_zt), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+
+        plt.xlim(left=-0.1)
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
