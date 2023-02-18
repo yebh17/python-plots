@@ -2,6 +2,7 @@
 
 import os
 import re
+import itertools
 import getopt, sys
 import pandas as pd
 import seaborn as sns
@@ -13,36 +14,37 @@ def wireguard():
     # Create a directory to store all the graphs
     wg_dir = "graphs/wireguard"
     os.makedirs(wg_dir, exist_ok=True)
-    
-    # Open the log file
+
+    # Open the log file and extract all decimal values
     with open("wireguard_results/metrics_data.log", "r") as f:
-        content = f.read()
+        decimal_values = list(float(x) for x in itertools.chain.from_iterable(re.findall(r"-?\d+\.\d+", line) for line in f))
 
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
-
+    # Convert the decimal values to response times
     resp_times_wg = [num * 1000 for num in decimal_values]
 
     resp_times_wg = [round(num, 3) for num in resp_times_wg]
+   
+    total = 0
+    minimum = float('inf')
+    maximum = float('-inf')
+    for num in resp_times_wg:
+        total += num
+        if num < minimum:
+            minimum = num
+        if num > maximum:
+            maximum = num
+
+    average = total / len(resp_times_wg)
 
     #print total samples count
     print("Total samples count: ", len(resp_times_wg))
-    
-    # Calculate the average using the sum and len functions
-    average = sum(resp_times_wg) / len(resp_times_wg)
+
     # Print the average value
     print("Average: ", average)
     
-    #Find the minimum value using the min() function
-    minimum = min(resp_times_wg)
     # Print the minimum value
     print("The minimum value is:", minimum)
-    
-    #Find the maximum value using the max() function
-    maximum = max(resp_times_wg)
+
     # Print the minimum value
     print("The maximum value is:", maximum)
     
@@ -117,35 +119,35 @@ def openvpn():
     ovpn_dir = "graphs/ovpn"
     os.makedirs(ovpn_dir, exist_ok=True)
     
-    # Open the log file
+    # Open the log file and extract all decimal values
     with open("ovpn_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
+        decimal_values = list(float(x) for x in itertools.chain.from_iterable(re.findall(r"-?\d+\.\d+", line) for line in f))
 
     resp_times_ovpn = [num * 1000 for num in decimal_values]
 
     resp_times_ovpn = [round(num, 3) for num in resp_times_ovpn]
-    
+   
+    total = 0
+    minimum = float('inf')
+    maximum = float('-inf')
+    for num in resp_times_ovpn:
+        total += num
+        if num < minimum:
+            minimum = num
+        if num > maximum:
+            maximum = num
+
+    average = total / len(resp_times_ovpn)
+
     #print total samples count
     print("Total samples count: ", len(resp_times_ovpn))
-    
-    # Calculate the average using the sum and len functions
-    average = sum(resp_times_ovpn) / len(resp_times_ovpn)
+
     # Print the average value
     print("Average: ", average)
     
-    #Find the minimum value using the min() function
-    minimum = min(resp_times_ovpn)
     # Print the minimum value
     print("The minimum value is:", minimum)
-    
-    #Find the maximum value using the max() function
-    maximum = max(resp_times_ovpn)
+
     # Print the minimum value
     print("The maximum value is:", maximum)
     
@@ -221,35 +223,35 @@ def softether():
     softether_dir = "graphs/softether"
     os.makedirs(softether_dir, exist_ok=True)
     
-    # Open the log file
+    # Open the log file and extract all decimal values
     with open("softether_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
+        decimal_values = list(float(x) for x in itertools.chain.from_iterable(re.findall(r"-?\d+\.\d+", line) for line in f))
 
     resp_times_se = [num * 1000 for num in decimal_values]
 
     resp_times_se = [round(num, 3) for num in resp_times_se]
-    
+   
+    total = 0
+    minimum = float('inf')
+    maximum = float('-inf')
+    for num in resp_times_se:
+        total += num
+        if num < minimum:
+            minimum = num
+        if num > maximum:
+            maximum = num
+
+    average = total / len(resp_times_se)
+
     #print total samples count
     print("Total samples count: ", len(resp_times_se))
-    
-    # Calculate the average using the sum and len functions
-    average = sum(resp_times_se) / len(resp_times_se)
+
     # Print the average value
     print("Average: ", average)
     
-    #Find the minimum value using the min() function
-    minimum = min(resp_times_se)
     # Print the minimum value
     print("The minimum value is:", minimum)
-    
-    #Find the maximum value using the max() function
-    maximum = max(resp_times_se)
+
     # Print the minimum value
     print("The maximum value is:", maximum)
     
@@ -326,35 +328,35 @@ def tinc():
     tinc_dir = "graphs/tinc"
     os.makedirs(tinc_dir, exist_ok=True)
     
-    # Open the log file
+    # Open the log file and extract all decimal values
     with open("tinc_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
+        decimal_values = list(float(x) for x in itertools.chain.from_iterable(re.findall(r"-?\d+\.\d+", line) for line in f))
 
     resp_times_tinc = [num * 1000 for num in decimal_values]
 
     resp_times_tinc = [round(num, 3) for num in resp_times_tinc]
-    
+   
+    total = 0
+    minimum = float('inf')
+    maximum = float('-inf')
+    for num in resp_times_tinc:
+        total += num
+        if num < minimum:
+            minimum = num
+        if num > maximum:
+            maximum = num
+
+    average = total / len(resp_times_tinc)
+
     #print total samples count
     print("Total samples count: ", len(resp_times_tinc))
-    
-    # Calculate the average using the sum and len functions
-    average = sum(resp_times_tinc) / len(resp_times_tinc)
+
     # Print the average value
     print("Average: ", average)
     
-    #Find the minimum value using the min() function
-    minimum = min(resp_times_tinc)
     # Print the minimum value
     print("The minimum value is:", minimum)
-    
-    #Find the maximum value using the max() function
-    maximum = max(resp_times_tinc)
+
     # Print the minimum value
     print("The maximum value is:", maximum)
     
@@ -431,35 +433,35 @@ def zerotier():
     zerotier_dir = "graphs/zerotier"
     os.makedirs(zerotier_dir, exist_ok=True)
     
-    # Open the log file
+    # Open the log file and extract all decimal values
     with open("zerotier_results/metrics_data.log", "r") as f:
-        content = f.read()
-
-    # Find all decimal values using regular expression
-    decimal_values = re.findall(r"-?\d+\.\d+", content)
-
-    # Convert the values to float
-    decimal_values = [float(x) for x in decimal_values]
+        decimal_values = list(float(x) for x in itertools.chain.from_iterable(re.findall(r"-?\d+\.\d+", line) for line in f))
 
     resp_times_zt = [num * 1000 for num in decimal_values]
 
     resp_times_zt = [round(num, 3) for num in resp_times_zt]
-    
+   
+    total = 0
+    minimum = float('inf')
+    maximum = float('-inf')
+    for num in resp_times_zt:
+        total += num
+        if num < minimum:
+            minimum = num
+        if num > maximum:
+            maximum = num
+
+    average = total / len(resp_times_zt)
+
     #print total samples count
     print("Total samples count: ", len(resp_times_zt))
-    
-    # Calculate the average using the sum and len functions
-    average = sum(resp_times_zt) / len(resp_times_zt)
+
     # Print the average value
     print("Average: ", average)
     
-    #Find the minimum value using the min() function
-    minimum = min(resp_times_zt)
     # Print the minimum value
     print("The minimum value is:", minimum)
-    
-    #Find the maximum value using the max() function
-    maximum = max(resp_times_zt)
+
     # Print the minimum value
     print("The maximum value is:", maximum)
     
@@ -473,6 +475,7 @@ def zerotier():
     std_dev = math.sqrt(variance)
     # Print the standard deviation
     print("The standard deviation is:", std_dev)
+
 
     # Convert the lists into DataFrames
     df = pd.DataFrame({"Time": resp_times_zt})
