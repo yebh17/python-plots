@@ -11,3 +11,4 @@ Options:
 -    t/tinc - Tinc plots
 -    z/zerotier - Zerotier plots
 -    e/ecdf - Combined ecdf plots
+-    b/box - Box plots

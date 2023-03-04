@@ -68,6 +68,8 @@ def wireguard():
         
         ax = sns.lineplot(data=df, linewidth = 0.90)
         
+        plt.ylim(0, 650)
+        
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
@@ -77,11 +79,11 @@ def wireguard():
     def histogram_graph():
         plt.figure(figsize=(9,4))
         
-        # plot the logarithmic values using a distplot
-        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
-        ax = sns.distplot(x=np.log10(resp_times_wg), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # Create a histogram and a density plot using Seaborn
+        ax = sns.histplot(x=np.log10(resp_times_wg), color="hotpink", bins=25, kde=True)
 
-        plt.xlim(left=-0.1)
+        # Set x-axis limits and labels
+        ax.set(xlim=(0, 4), xlabel="Log(response times(ms))")
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -173,6 +175,8 @@ def openvpn():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(0, 650)
+        
         plt.ylim(bottom=0)
         
         # Save the plot to a file
@@ -181,11 +185,11 @@ def openvpn():
     def histogram_graph():
         plt.figure(figsize=(9,4))
         
-        # plot the logarithmic values using a distplot
-        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
-        ax = sns.distplot(x=np.log10(resp_times_ovpn), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # Create a histogram and a density plot using Seaborn
+        ax = sns.histplot(x=np.log10(resp_times_ovpn), color="hotpink", bins=25, kde=True)
 
-        plt.xlim(left=-0.1)
+        # Set x-axis limits and labels
+        ax.set(xlim=(0, 4), xlabel="Log(response times(ms))")
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -277,6 +281,8 @@ def softether():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(0, 650)
+        
         plt.ylim(bottom=0)
         
         # Save the plot to a file
@@ -286,11 +292,11 @@ def softether():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # plot the logarithmic values using a distplot
-        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
-        ax = sns.distplot(x=np.log10(resp_times_se), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # Create a histogram and a density plot using Seaborn
+        ax = sns.histplot(x=np.log10(resp_times_se), color="hotpink", bins=25, kde=True)
 
-        plt.xlim(left=-0.1)
+        # Set x-axis limits and labels
+        ax.set(xlim=(0, 4), xlabel="Log(response times(ms))")
 
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -382,6 +388,8 @@ def tinc():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(0, 650)
+        
         plt.ylim(bottom=0)
         
         # Save the plot to a file
@@ -391,11 +399,11 @@ def tinc():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # plot the logarithmic values using a distplot
-        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
-        ax = sns.distplot(x=np.log10(resp_times_tinc), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # Create a histogram and a density plot using Seaborn
+        ax = sns.histplot(x=np.log10(resp_times_tinc), color="hotpink", bins=25, kde=True)
 
-        plt.xlim(left=-0.1)
+        # Set x-axis limits and labels
+        ax.set(xlim=(0, 4), xlabel="Log(response times(ms))")
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -488,6 +496,8 @@ def zerotier():
         # Set labels for x and y axis
         ax.set(xlabel="Requests count", ylabel="Response times(ms)")
         
+        plt.ylim(0, 650)
+        
         plt.ylim(bottom=0)
         
         # Save the plot to a file
@@ -497,11 +507,11 @@ def zerotier():
         # Plot histogram
         plt.figure(figsize=(9,4))
         
-        # plot the logarithmic values using a distplot
-        # sns.distplot(log_data, color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
-        ax = sns.distplot(x=np.log10(resp_times_zt), color="hotpink", bins=25, hist_kws={'rwidth': 0.8})
+        # Create a histogram and a density plot using Seaborn
+        ax = sns.histplot(x=np.log10(resp_times_zt), color="hotpink", bins=25, kde=True)
 
-        plt.xlim(left=-0.1)
+        # Set x-axis limits and labels
+        ax.set(xlim=(0, 4), xlabel="Log(response times(ms))")
         
         # Add labels
         plt.xlabel('Log(response times(ms))')
@@ -534,7 +544,7 @@ def zerotier():
     return raw_graph(), histogram_graph(), ecdf_graph()
 
 def ecdfs_comparision_graph():
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 6))
     
     labels = ['Wireguard', 'OpenVPN', 'ZeroTier', 'Tinc', 'SoftEther']
     colors = ['green', 'red', 'black', 'purple', 'orange']
@@ -551,15 +561,20 @@ def ecdfs_comparision_graph():
         n = len(resp_times)
         x = np.sort(resp_times)
         y = np.arange(1, n + 1) / n
-        ax.plot(x, y, marker='.', linestyle='none', markersize=5, color=colors[i], label=labels[i])
+        ax.plot(x, y, marker='.', markersize=7, color=colors[i], label=labels[i])
 
-    plt.xlim(0, 30)
-    plt.ylim(-0.05, 0.4)
     ax.legend()
-    
+    ax.set_xlabel('Response Time (ms)')
+    ax.set_ylabel('ECDF')
+    ax.set_title('Comparison of VPN Response Time Distributions')
+    ax.set_ylim([-0.1, 1.1])
+
     # Save the plot to a file
     plt.savefig("graphs/combined_ecdf.jpg")
-    
+
+
+    # plt.xlim(-2, 30)
+    # plt.ylim(-0.02, 0.4)
 def box_plot():
     fig, ax = plt.subplots(1, 5, sharex=True, figsize=(15, 5))
 
@@ -569,7 +584,7 @@ def box_plot():
     
     labels = ['Wireguard', 'OpenVPN', 'ZeroTier', 'Tinc', 'Softether']
 
-    colors = ['green', 'orange', 'black', 'purple', 'red']
+    colors = ['green', 'red', 'black', 'purple', 'orange']
 
     for i in range(len(file_names)):
         # Open the file
@@ -585,24 +600,38 @@ def box_plot():
         resp_times = [num * 1000 for num in decimal_values]
         resp_times = [round(num, 3) for num in resp_times]
 
+        # Calculate the required statistics
+        minimum = np.min(resp_times)
+        lower_quartile = np.percentile(resp_times, 25)
+        median = np.median(resp_times)
+        upper_quartile = np.percentile(resp_times, 75)
+        iqr = upper_quartile - lower_quartile
+        maximum = np.max(resp_times)
+
+        # Plot the boxplot
         bp = ax[i].boxplot(resp_times, vert=True, showfliers=True)
 
         for element in ['boxes', 'whiskers', 'caps']:
             plt.setp(bp[element], color=colors[i])
 
-        median = bp['medians'][0].get_ydata()[0]
+        # Add annotations for the required values
+        ax[i].annotate(f"Minimum: {minimum:.2f}", xy=(1, minimum), xycoords='data',
+                       xytext=(-35, -10), textcoords='offset points')
+
+        ax[i].annotate(f"1st Quartile: {lower_quartile:.2f}", xy=(1, lower_quartile), xycoords='data',
+                       xytext=(-35, 20), textcoords='offset points')
 
         ax[i].annotate(f"Median: {median:.2f}", xy=(1, median), xycoords='data',
-                    xytext=(-31, 5), textcoords='offset points')
+                       xytext=(-31, 8), textcoords='offset points')
 
-        first_quartile = bp['caps'][0].get_ydata()[0]
-        third_quartile = bp['caps'][1].get_ydata()[0]
+        ax[i].annotate(f"3rd Quartile: {upper_quartile:.2f}", xy=(1, upper_quartile), xycoords='data',
+                       xytext=(-35, -20), textcoords='offset points')
 
-        ax[i].annotate(f"1st Quartile: {first_quartile:.2f}", xy=(1, first_quartile), xycoords='data',
-                    xytext=(-35, 10), textcoords='offset points')
+        ax[i].annotate(f"Maximum: {maximum:.2f}", xy=(1, maximum), xycoords='data',
+                       xytext=(-35, 1.0), textcoords='offset points')
 
-        ax[i].annotate(f"3rd Quartile: {third_quartile:.2f}", xy=(1, third_quartile), xycoords='data',
-                    xytext=(-35, -30), textcoords='offset points')
+        ax[i].annotate(f"IQR: {iqr:.2f}", xy=(1, (upper_quartile+lower_quartile)/2), xycoords='data',
+                       xytext=(-30, -30), textcoords='offset points', rotation=90)
 
         ax[i].set_title(labels[i], color=colors[i])
 
