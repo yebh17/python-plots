@@ -14,36 +14,36 @@ Options:
 -    b/box - Box plots
 
 Flowchart:
-┌────────────────────────────────────┐
-│      Read Data from Five Files     │
-└────────────────────────────────────┘
-                │
-                ▼
-┌─────────────────────────────────────────────┐
-│ Calculate Total, Maximum, Minimum, Average, │
-│          and Standard Deviation Values      │
-└─────────────────────────────────────────────┘
-                │
-                ▼
-┌───────────────────────────────────┐
-│       Plot Raw Graphs             │
-│  (requests count vs response time)│
-└───────────────────────────────────┘
-                │
-                ▼
-┌───────────────────────────────────────┐
-│      Plot Histogram Graphs            │
-│(logarithmic response time vs requests)│
-└───────────────────────────────────────┘
-                │
-                ▼
-┌──────────────────────────────────────────────┐
-│     Plot Empirical Cumulative Distribution   │
-│ Function (ECDF) Graphs (sorted response time │
-│ vs cumulative values of requests)            │
-└──────────────────────────────────────────────┘
-                │
-                ▼
-┌───────────────────────────────────────────────────────┐
-│    Plot Box Plots for Data from All Five Files        │
-└───────────────────────────────────────────────────────┘
+`┌────────────────────────────────────┐`
+`│      Read Data from Five Files     │`
+`└────────────────────────────────────┘`
+`                │                     `
+`                ▼                     `
+`┌─────────────────────────────────────────────┐`
+`│ Calculate Total, Maximum, Minimum, Average, │`
+`│          and Standard Deviation Values      │`
+`└─────────────────────────────────────────────┘`
+`                │                              `
+`                ▼                              `
+`┌───────────────────────────────────┐`
+`│       Plot Raw Graphs             │`
+`│  (requests count vs response time)│`
+`└───────────────────────────────────┘`
+`                │                      `                 
+`                ▼                      `
+`┌───────────────────────────────────────┐`
+`│      Plot Histogram Graphs            │`
+`│(logarithmic response time vs requests)│`
+`└───────────────────────────────────────┘`
+`                │                       `  
+`                ▼                       `
+`┌──────────────────────────────────────────────┐`
+`│     Plot Empirical Cumulative Distribution   │`
+`│ Function (ECDF) Graphs (sorted response time │`
+`│ vs cumulative values of requests)            │`
+`└──────────────────────────────────────────────┘`
+`                │                              `
+`                ▼                              `
+`┌───────────────────────────────────────────────────────┐`
+`│    Plot Box Plots for Data from All Five Files        │`
+`└───────────────────────────────────────────────────────┘`
