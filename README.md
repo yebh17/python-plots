@@ -23,7 +23,7 @@ Flowchart:
                 ▼
 ┌─────────────────────────────────────────────┐
 │ Calculate Total, Maximum, Minimum, Average, │
-│          and Standard Deviation Values      │
+│ and Standard Deviation Values and print them│                                           │         
 └─────────────────────────────────────────────┘
                 │
                 ▼
